@@ -1,6 +1,5 @@
 package com.revature.banking.dao;
 
-import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -47,18 +46,36 @@ public class CustomerDataAccessService implements CustomerDao {
 	@Override
 	public Optional<Customer> selectCustomerById(UUID id) {
 		// TODO Auto-generated method stub
-		return Optional.empty();
+		final String sql = "SELECT customer_id, customers_name, customers_email, login, user_password FROM customers WHERE customer_id = ?";
+
+		Customer customer = jdbcTemplate.queryForObject(sql, (resultSet, i) -> {
+			UUID customerId = UUID.fromString(resultSet.getString("customer_id"));
+			String name = resultSet.getString("customers_name");
+			String email = resultSet.getString("customers_email");
+			String login = resultSet.getString("login");
+			String password = resultSet.getString("user_password");
+			return new Customer(customerId, name, email, login, password);
+		}, new Object[] { id });
+
+		return Optional.ofNullable(customer);
 	}
 
 	@Override
 	public int deleteCustomerById(UUID id) {
 		// TODO Auto-generated method stub
+		final String sql = "DELETE FROM customers WHERE customer_id = '" + id + "'";
+
+		jdbcTemplate.execute(sql);
+
 		return 0;
 	}
 
 	@Override
 	public int updateCustomerById(UUID id, Customer customer) {
 		// TODO Auto-generated method stub
+		final String sql = "UPDATE customers SET customers_name = '" + customer.getName() + "',  customers_email = '" + customer.getEmail() + "',"  +
+				"login = '" + customer.getLogin() + "', user_password = '" + customer.getPassword() + "' WHERE customer_id = '" + id +"'";
+		jdbcTemplate.execute(sql);
 		return 0;
 	}
 
