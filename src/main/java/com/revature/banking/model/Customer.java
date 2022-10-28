@@ -47,13 +47,4 @@ public class Customer {
 	public String getPassword() {
 		return this.password;
 	}
-
-	@Override
-	public String toString() {
-		return "Customer [id=" + id + ", name=" + name + ", email=" + email + ", login=" + login + ", password="
-				+ password + "]";
-	}
-
-	
-
 }
