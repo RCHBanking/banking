@@ -54,7 +54,7 @@ public class AccountDataAccessService implements AccountDao {
 			String name = resultSet.getString("account_name");
 			Double balance = resultSet.getDouble("account_balance");
 			UUID customerId = UUID.fromString(resultSet.getString("customer_id"));
-			return new Account(customerId, name, balance, customerId);
+			return new Account(accountId, name, balance, customerId);
 		}, new Object[] { id });
 
 		return Optional.ofNullable(account);
