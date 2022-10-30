@@ -23,6 +23,7 @@ public class CustomerService {
 	}
 	
 	public int addCustomer(Customer customer) {
+
 		return customerDao.insertCustomer(customer);
 	}
 	

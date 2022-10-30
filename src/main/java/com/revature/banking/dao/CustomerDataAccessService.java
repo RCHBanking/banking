@@ -22,9 +22,8 @@ public class CustomerDataAccessService implements CustomerDao {
 	@Override
 	public int insertCustomer(UUID id, Customer customer) {
 		// TODO Auto-generated method stub
-		final String sql = "INSERT INTO customers (customer_id, customers_name, customers_email, login, user_password) VALUES (uuid_generate_v4(), '"
-				+ customer.getName() + "', '" + customer.getEmail() + "', '" + customer.getLogin() + "', '"
-				+ customer.getPassword() + "')";
+		final String sql = "INSERT INTO customers (customer_id, firstname, lastname, login, user_password)" +
+				"VALUES (uuid_generate_v4(), ?, ?, ?, ?, ?,)";
 		jdbcTemplate.execute(sql);
 		return 0;
 	}
