@@ -29,22 +29,22 @@ public class Customer {
 	}
 
 	public UUID getId() {
-		return id;
+		return this.id;
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public String getLogin() {
-		return login;
+		return this.login;
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 }
