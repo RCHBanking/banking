@@ -6,14 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Account {
 
-	private int accountId;
+	private UUID accountId;
 	private String accountName;
 	private Double accountBalance;
 	private UUID customerId;
 
-	public Account(@JsonProperty("id") int accountId,
-				   @JsonProperty("name") String accountName,
-				   @JsonProperty("balance")  Double accountBalance,
+	public Account(@JsonProperty("id") UUID accountId,
+				   @JsonProperty("account_name") String accountName,
+				   @JsonProperty("account_balance")  Double accountBalance,
 				   @JsonProperty("customer_id") UUID customerId) {
 		super();
 		this.accountId = accountId;
@@ -22,7 +22,7 @@ public class Account {
 		this.customerId = customerId;
 	}
 
-	public int getAccountId() {
+	public UUID getAccountId() {
 		return accountId;
 	}
 
@@ -37,5 +37,13 @@ public class Account {
 	public UUID getCustomerId() {
 		return customerId;
 	}
+
+	@Override
+	public String toString() {
+		return "Account [accountId=" + accountId + ", accountName=" + accountName + ", accountBalance=" + accountBalance
+				+ ", customerId=" + customerId + "]";
+	}
+	
+	
 
 }
