@@ -1,12 +1,21 @@
 package com.revature.banking.model;
 
 import java.util.UUID;
-
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+@Entity(name="Customer")
+@Table(
+		name = "customer",
+		uniqueConstraints = {
+				@UniqueConstraint(name = "customer_email_unique", columnNames = "email")
+		}
+		)
 
 public class Customer {
+	@Id
+	@SequenceGenerator()
 	
 	private UUID id;
 	@NotBlank
