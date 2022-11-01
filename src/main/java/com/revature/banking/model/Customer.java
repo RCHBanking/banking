@@ -2,58 +2,45 @@ package com.revature.banking.model;
 
 import java.util.UUID;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-@Entity(name="Customer")
-@Table(
-		name = "customer",
-		uniqueConstraints = {
-				@UniqueConstraint(name = "customer_email_unique", columnNames = "email")
-		}
-		)
+import jdk.jfr.DataAmount;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.internal.build.AllowPrintStacktrace;
 
+import static javax.persistence.GenerationType.SEQUENCE;
+
+@Data
+@NoArgsConstructor
+@Entity
 public class Customer {
 	@Id
-	@SequenceGenerator()
-	
-	private UUID id;
-	@NotBlank
+	@GeneratedValue(strategy = SEQUENCE)
+	@Column(nullable = false)
+
+	private Long id;
+	@NotBlank(message = "name is required")
 	private String name;
+	@Email
+	@NotEmpty(message = "email is required")
 	private String email;
-	private String login;
+	@NotEmpty(message = "password is required")
 	private String password;
-	
-	public Customer(@JsonProperty("id") UUID id,
+
+	public Customer(@JsonProperty("id") Long id,
 					@JsonProperty("name") String name,
-					@JsonProperty("email") String email, 
-					@JsonProperty("login") String login, 
+					@JsonProperty("email") String email,
 					@JsonProperty("password") String password) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
-		this.login = login;
 		this.password = password;
 	}
 
-	public UUID getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
 }
