@@ -1,15 +1,16 @@
 package com.revature.banking.model;
 
 import java.util.UUID;
-
 import javax.validation.constraints.NotBlank;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.ToString;
 
+@Data
 public class Customer {
 	
 	private UUID id;
-	@NotBlank
 	private String name;
 	private String email;
 	private String login;
@@ -26,25 +27,5 @@ public class Customer {
 		this.email = email;
 		this.login = login;
 		this.password = password;
-	}
-
-	public UUID getId() {
-		return this.id;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public String getEmail() {
-		return this.email;
-	}
-
-	public String getLogin() {
-		return this.login;
-	}
-
-	public String getPassword() {
-		return this.password;
 	}
 }

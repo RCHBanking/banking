@@ -1,9 +1,12 @@
 package com.revature.banking.model;
 
 import java.util.UUID;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Setter;
+import lombok.Data;
+import lombok.ToString;
 
+@Data
 public class Account {
 
 	private UUID accountId;
